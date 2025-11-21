@@ -31,16 +31,9 @@ const ExecuteReasoningPipelineOutputSchema = z.object({
   finalConclusion: z.string().describe('The final conclusion.'),
 });
 
-type ExecuteReasoningPipelineInput = z.infer<
-  typeof ExecuteReasoningPipelineInputSchema
->;
-type ExecuteReasoningPipelineOutput = z.infer<
-  typeof ExecuteReasoningPipelineOutputSchema
->;
-
 export async function executeReasoningPipeline(
-  input: ExecuteReasoningPipelineInput
-): Promise<ExecuteReasoningPipelineOutput> {
+  input: z.infer<typeof ExecuteReasoningPipelineInputSchema>
+): Promise<z.infer<typeof ExecuteReasoningPipelineOutputSchema>> {
   return executeReasoningPipelineFlow(input);
 }
 

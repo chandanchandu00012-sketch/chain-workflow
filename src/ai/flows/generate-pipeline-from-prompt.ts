@@ -13,14 +13,12 @@ import {z} from 'genkit';
 const GeneratePipelineFromPromptInputSchema = z.object({
   prompt: z.string().describe('A description of the desired reasoning pipeline.'),
 });
-type GeneratePipelineFromPromptInput = z.infer<typeof GeneratePipelineFromPromptInputSchema>;
 
 const GeneratePipelineFromPromptOutputSchema = z.object({
   pipelineDefinition: z.string().describe('A JSON string representing the generated pipeline definition.'),
 });
-type GeneratePipelineFromPromptOutput = z.infer<typeof GeneratePipelineFromPromptOutputSchema>;
 
-export async function generatePipelineFromPrompt(input: GeneratePipelineFromPromptInput): Promise<GeneratePipelineFromPromptOutput> {
+export async function generatePipelineFromPrompt(input: z.infer<typeof GeneratePipelineFromPromptInputSchema>): Promise<z.infer<typeof GeneratePipelineFromPromptOutputSchema>> {
   return generatePipelineFromPromptFlow(input);
 }
 

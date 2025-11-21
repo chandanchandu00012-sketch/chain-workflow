@@ -11,15 +11,13 @@ import {z} from 'genkit';
 const AnalyzeReasoningForErrorsInputSchema = z.object({
   reasoningSteps: z.string().describe('The captured reasoning steps to analyze.'),
 });
-type AnalyzeReasoningForErrorsInput = z.infer<typeof AnalyzeReasoningForErrorsInputSchema>;
 
 const AnalyzeReasoningForErrorsOutputSchema = z.object({
   errors: z.array(z.string()).describe('A list of potential errors or inconsistencies found in the reasoning steps.'),
   suggestions: z.array(z.string()).describe('Suggestions for improving the reasoning pipeline.'),
 });
-type AnalyzeReasoningForErrorsOutput = z.infer<typeof AnalyzeReasoningForErrorsOutputSchema>;
 
-export async function analyzeReasoningForErrors(input: AnalyzeReasoningForErrorsInput): Promise<AnalyzeReasoningForErrorsOutput> {
+export async function analyzeReasoningForErrors(input: z.infer<typeof AnalyzeReasoningForErrorsInputSchema>): Promise<z.infer<typeof AnalyzeReasoningForErrorsOutputSchema>> {
   return analyzeReasoningForErrorsFlow(input);
 }
 
