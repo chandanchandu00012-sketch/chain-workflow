@@ -3,8 +3,6 @@
  * @fileOverview Analyzes reasoning steps for errors and inconsistencies.
  *
  * - analyzeReasoningForErrors - Analyzes the captured reasoning steps and highlights potential errors or inconsistencies.
- * - AnalyzeReasoningForErrorsInput - The input type for the analyzeReasoningForErrors function.
- * - AnalyzeReasoningForErrorsOutput - The return type for the analyzeReasoningForErrors function.
  */
 
 import {ai} from '@/ai/genkit';
@@ -13,13 +11,13 @@ import {z} from 'genkit';
 const AnalyzeReasoningForErrorsInputSchema = z.object({
   reasoningSteps: z.string().describe('The captured reasoning steps to analyze.'),
 });
-export type AnalyzeReasoningForErrorsInput = z.infer<typeof AnalyzeReasoningForErrorsInputSchema>;
+type AnalyzeReasoningForErrorsInput = z.infer<typeof AnalyzeReasoningForErrorsInputSchema>;
 
 const AnalyzeReasoningForErrorsOutputSchema = z.object({
   errors: z.array(z.string()).describe('A list of potential errors or inconsistencies found in the reasoning steps.'),
   suggestions: z.array(z.string()).describe('Suggestions for improving the reasoning pipeline.'),
 });
-export type AnalyzeReasoningForErrorsOutput = z.infer<typeof AnalyzeReasoningForErrorsOutputSchema>;
+type AnalyzeReasoningForErrorsOutput = z.infer<typeof AnalyzeReasoningForErrorsOutputSchema>;
 
 export async function analyzeReasoningForErrors(input: AnalyzeReasoningForErrorsInput): Promise<AnalyzeReasoningForErrorsOutput> {
   return analyzeReasoningForErrorsFlow(input);

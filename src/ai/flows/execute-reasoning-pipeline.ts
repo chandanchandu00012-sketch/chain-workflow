@@ -5,8 +5,6 @@
  *
  * It exports:
  * - `executeReasoningPipeline`: An async function that takes a prompt and a pipeline definition and returns the execution result.
- * - `ExecuteReasoningPipelineInput`: The input type for the `executeReasoningPipeline` function.
- * - `ExecuteReasoningPipelineOutput`: The output type for the `executeReasoningPipeline` function.
  */
 
 import {ai} from '@/ai/genkit';
@@ -33,10 +31,10 @@ const ExecuteReasoningPipelineOutputSchema = z.object({
   finalConclusion: z.string().describe('The final conclusion.'),
 });
 
-export type ExecuteReasoningPipelineInput = z.infer<
+type ExecuteReasoningPipelineInput = z.infer<
   typeof ExecuteReasoningPipelineInputSchema
 >;
-export type ExecuteReasoningPipelineOutput = z.infer<
+type ExecuteReasoningPipelineOutput = z.infer<
   typeof ExecuteReasoningPipelineOutputSchema
 >;
 
